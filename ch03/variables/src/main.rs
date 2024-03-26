@@ -1,3 +1,5 @@
+use std::io;
+
 fn main() {
     // make the variable mutable
     let mut x = 5;
@@ -50,4 +52,18 @@ fn main() {
     // Access the tuple elements by index
     let tup: (i32, f64, u8) = (500, 6.4, 1);
     println!("tup: ({}, {}, {})", tup.0, tup.1, tup.2);
+
+    // Invalid Array Element Access
+    let a = [1, 2, 3, 4, 5];
+    println!("Please enter an array index.");
+    let mut index = String::new();
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line");
+    let index: usize = index
+        .trim()
+        .parse()
+        .expect("Index entered was not a number");
+    let element = a[index];
+    println!("The value of the element at index {index} is: {element}");
 }
