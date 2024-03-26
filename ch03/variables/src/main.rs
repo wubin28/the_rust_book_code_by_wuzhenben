@@ -46,4 +46,8 @@ fn main() {
     println!("The value of x is: {}", x);
     println!("The value of y is: {}", y);
     println!("The value of z is: {}", z);
+
+    // Access the tuple elements by index
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+    println!("tup: ({}, {}, {})", tup.0, tup.1, tup.2);
 }
