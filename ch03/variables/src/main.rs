@@ -37,4 +37,13 @@ fn main() {
     // remainder
     let remainder = 43 % 5;
     println!("remainder: {remainder}");
+
+    // the tuple type
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+    // Destructure the tuple into individual variables
+    let (x, y, z) = tup;
+    // Print each value
+    println!("The value of x is: {}", x);
+    println!("The value of y is: {}", y);
+    println!("The value of z is: {}", z);
 }
