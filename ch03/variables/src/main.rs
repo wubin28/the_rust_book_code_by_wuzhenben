@@ -13,4 +13,28 @@ fn main() {
         println!("The value of x in the inner scope is: {x}");
     }
     println!("The value of x is: {x}");
+
+    // numeric operations
+    // addition
+    let sum = 5 + 10;
+    println!("sum: {sum}");
+
+    // subtraction
+    let difference = 95.5 - 4.3;
+    println!("difference: {difference}");
+
+    // multiplication
+    let product = 4 * 30;
+    println!("product: {product}");
+
+    // division
+    let quotient = 56.7 / 32.2;
+    println!("quotient: {quotient}");
+    // Integer division truncates toward zero to the nearest integer.
+    let truncated = -5 / 3; // Results in -1
+    println!("truncated: {truncated}");
+
+    // remainder
+    let remainder = 43 % 5;
+    println!("remainder: {remainder}");
 }
