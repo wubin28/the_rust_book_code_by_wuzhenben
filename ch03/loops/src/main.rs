@@ -46,4 +46,10 @@ fn main() {
     for element in a {
         println!("the value is: {element}");
     }
+
+    // using a range with for
+    for number in (1..4).rev() {
+        println!("{number}!");
+    }
+    println!("LIFTOFF!!!");
 }
