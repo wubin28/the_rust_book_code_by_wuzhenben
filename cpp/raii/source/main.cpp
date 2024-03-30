@@ -49,6 +49,8 @@ private:
   std::ofstream file;  // 文件句柄
 };
 
+FileWrapper createFileWrapper();
+
 auto main() -> int
 {
   auto const lib = library {};
@@ -58,6 +60,25 @@ auto main() -> int
   // RAII Demo
   {
     FileWrapper fw("example.txt");
+
+    // 禁止拷贝构造函数(Copy Constructor)，编译错误
+    // FileWrapper fw2 = fw;
+
+    // 禁止拷贝赋值操作(Copy Assignment Operator)，编译错误
+    // FileWrapper fw2("example2.txt");
+    // fw2 = fw;
+
+    // 允许移动构造函数(Move Constructor)，资源转移
+    // Here, the move constructor is called.
+    FileWrapper fw1 = createFileWrapper();
+
+    // 允许移动赋值操作(Move Assignment Operator)，资源转移
+    FileWrapper fw2("example2.txt");
+    FileWrapper fw3("example3.txt");
+    // This would call the move assignment operator, and it's allowed in the
+    // FileWrapper class.
+    fw3 = std::move(fw2);
+
     fw.write("Hello, RAII!");
     // fw的生命周期结束时，其析构函数会自动被调用，文件被关闭
   }  // fw析构函数在这里被调用
@@ -66,4 +87,11 @@ auto main() -> int
   std::cout << "File has been closed." << std::endl;
 
   return 0;
+}
+
+FileWrapper createFileWrapper()
+{
+  FileWrapper fw("example1.txt");
+  return fw;  // This would call the move constructor, and it's allowed in the
+              // FileWrapper class.
 }
