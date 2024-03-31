@@ -51,6 +51,25 @@ private:
 
 FileWrapper createFileWrapper();
 
+class SimpleString
+{
+public:
+  char* data;
+  SimpleString(const char* str)
+  {
+    data = new char[std::strlen(str) + 1];
+    std::strcpy(data, str);
+  }
+  ~SimpleString()
+  {
+    delete[] data;
+    std::cout << "SimpleString deleted." << std::endl;
+  }
+  // 禁用复制构造函数和赋值运算符以防止浅拷贝。
+  // SimpleString(const SimpleString&) = delete;
+  // SimpleString& operator=(const SimpleString&) = delete;
+};
+
 auto main() -> int
 {
   auto const lib = library {};
@@ -92,6 +111,11 @@ auto main() -> int
 
   std::cout << s1 << ", world!"
             << std::endl;  // 在C++中，这是合法的，因为发生了拷贝。
+
+  // the same block of memory freed twice when these two objects are destructed
+  SimpleString s3("hello");
+  SimpleString s4 = s3;  // 这行代码现在会编译错误，因为复制构造函数被禁用。
+  std::cout << s3.data << ", world!" << std::endl;
 
   return 0;
 }
