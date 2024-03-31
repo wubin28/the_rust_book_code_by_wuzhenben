@@ -86,6 +86,13 @@ auto main() -> int
   // 此时文件已经被关闭，无需手动关闭文件
   std::cout << "File has been closed." << std::endl;
 
+  // C++ doesn't handle lifecycle issues after ownership transfer
+  std::string s1 = "hello";
+  std::string s2 = s1;
+
+  std::cout << s1 << ", world!"
+            << std::endl;  // 在C++中，这是合法的，因为发生了拷贝。
+
   return 0;
 }
 
