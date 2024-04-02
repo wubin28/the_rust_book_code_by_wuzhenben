@@ -18,10 +18,6 @@ std::string read_file_to_string(const std::string& path)
 
 auto main() -> int
 {
-  auto const lib = library {};
-  auto const message = "Hello from " + lib.name + "!";
-  std::cout << message << '\n';
-
   // 泛捕获异常
   try {
     std::string contents = read_file_to_string("hello.txt");
