@@ -16,7 +16,7 @@ std::string read_file_to_string(const std::string& path)
   return contents;
 }
 
-auto main() -> int
+int main()
 {
   // 捕获特定类型的异常
   try {
