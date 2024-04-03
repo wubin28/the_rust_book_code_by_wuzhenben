@@ -18,5 +18,10 @@ fn main() {
 
     // a variable of a custom type
     let _my_resource = MyResource {}; // my_resource is valid from this point forward
-                                      // do stuff with my_resource
-} // Here, Rust automatically calls `drop` for `s`, releasing its memory.
+                                      // Ownership of _my_resource is moved to _my_resource_2
+    let _my_resource_2 = _my_resource; // After this point, _my_resource is no longer valid
+
+    // let _my_resource_3 = _my_resource; // This will throw an error because _my_resource is no longer valid
+
+    // do stuff with _my_resource_2
+} // Here, Rust automatically calls `drop` for `s` and `_my_resource_2` only once, releasing its memory.
