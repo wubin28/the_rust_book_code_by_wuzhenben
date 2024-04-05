@@ -15,7 +15,7 @@ public class ExceptioncheckingjavaApplication {
       } else {
         System.out.println("File is empty or does not exist.");
       }
-    } catch (Exception e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
