@@ -3,6 +3,8 @@ package com.wuzhenben.exceptioncheckingjava;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,9 +15,9 @@ public class ExceptioncheckingjavaApplication {
   public static void main(String[] args) {
     try {
       String contents = readFileToString("hello.txt");
-      String firstLine = findFirstLine(contents);
-      if (firstLine != null) {
-        LOGGER.log(Level.INFO, "First line: " + firstLine);
+      Optional<String> firstLine = findFirstLine(contents);
+      if (firstLine.isPresent()) {
+        LOGGER.log(Level.INFO, "First line: " + firstLine.get());
       } else {
         LOGGER.log((Level.INFO), "File is empty");
       }
@@ -24,18 +26,9 @@ public class ExceptioncheckingjavaApplication {
     }
   }
 
-  // 直接处理可能的空值，不使用 Optional
-  public static String findFirstLine(String contents) {
-    if (contents == null || contents.isEmpty()) {
-      return null;
-    } else {
-      String[] lines = contents.split("\\R");
-      if (lines.length > 0) {
-        return lines[0];
-      } else {
-        return null;
-      }
-    }
+  // 使用 Optional 类型处理可能的空值
+  public static Optional<String> findFirstLine(String contents) {
+    return Optional.ofNullable(contents).flatMap(c -> Arrays.stream(c.split("\\R")).findFirst());
   }
 
   // 尝试读取文件到字符串
