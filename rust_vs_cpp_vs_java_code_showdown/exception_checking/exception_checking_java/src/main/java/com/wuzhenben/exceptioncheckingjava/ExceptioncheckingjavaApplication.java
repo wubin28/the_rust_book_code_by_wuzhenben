@@ -3,20 +3,24 @@ package com.wuzhenben.exceptioncheckingjava;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ExceptioncheckingjavaApplication {
+  private static final Logger LOGGER =
+      Logger.getLogger(ExceptioncheckingjavaApplication.class.getName());
 
   public static void main(String[] args) {
     try {
       String contents = readFileToString("hello.txt");
       String firstLine = findFirstLine(contents);
       if (firstLine != null) {
-        System.out.println("First line: " + firstLine);
+        LOGGER.log(Level.INFO, "First line: " + firstLine);
       } else {
-        System.out.println("File is empty or does not exist.");
+        LOGGER.log((Level.INFO), "File is empty");
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      LOGGER.log(Level.SEVERE, "Error reading file: " + e.getMessage());
     }
   }
 
