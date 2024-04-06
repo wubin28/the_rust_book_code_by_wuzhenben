@@ -3,7 +3,6 @@ package com.wuzhenben.exceptioncheckingjava;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +25,7 @@ public class ExceptioncheckingjavaApplication {
 
   // 使用 Optional 类型处理可能的空值
   public static Optional<String> findFirstLine(String contents) {
-    return Optional.ofNullable(contents).flatMap(c -> Arrays.stream(c.split("\\R")).findFirst());
+    return Optional.ofNullable(contents).flatMap(c -> c.lines().findFirst());
   }
 
   // 尝试读取文件到字符串
