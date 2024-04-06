@@ -15,12 +15,10 @@ public class ExceptioncheckingjavaApplication {
   public static void main(String[] args) {
     try {
       String contents = readFileToString("hello.txt");
-      Optional<String> firstLine = findFirstLine(contents);
-      if (firstLine.isPresent()) {
-        LOGGER.log(Level.INFO, "First line: " + firstLine.get());
-      } else {
-        LOGGER.log((Level.INFO), "File is empty");
-      }
+      findFirstLine(contents)
+          .ifPresentOrElse(
+              line -> LOGGER.log(Level.INFO, "First line: " + line),
+              () -> LOGGER.log((Level.INFO), "File is empty"));
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE, "Error reading file: " + e.getMessage());
     }
