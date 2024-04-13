@@ -8,16 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ExceptioncheckingjavaApplication {
-  private static final Logger LOGGER =
-      Logger.getLogger(ExceptioncheckingjavaApplication.class.getName());
+  private static Logger LOGGER = Logger.getLogger(ExceptioncheckingjavaApplication.class.getName());
 
   public static void main(String[] args) {
-    logTheFirstLineOfAFile("hello.txt");
-  }
-
-  private static void logTheFirstLineOfAFile(String fileName) {
     try {
-      String contents = readFileToString(fileName);
+      String contents = readFileToString("hello.txt");
       findFirstLine(contents)
           .ifPresentOrElse(
               line -> LOGGER.log(Level.INFO, "First line: " + line),
