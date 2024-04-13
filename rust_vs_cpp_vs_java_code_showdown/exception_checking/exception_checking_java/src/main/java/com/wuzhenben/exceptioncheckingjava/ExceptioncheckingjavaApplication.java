@@ -12,8 +12,12 @@ public class ExceptioncheckingjavaApplication {
       Logger.getLogger(ExceptioncheckingjavaApplication.class.getName());
 
   public static void main(String[] args) {
+    logTheFirstLineOfAFile("hello.txt");
+  }
+
+  private static void logTheFirstLineOfAFile(String fileName) {
     try {
-      String contents = readFileToString("hello.txt");
+      String contents = readFileToString(fileName);
       findFirstLine(contents)
           .ifPresentOrElse(
               line -> LOGGER.log(Level.INFO, "First line: " + line),
