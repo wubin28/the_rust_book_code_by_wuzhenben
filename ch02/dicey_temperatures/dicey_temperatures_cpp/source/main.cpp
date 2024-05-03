@@ -1,12 +1,14 @@
 #include <iostream>
 #include <string>
 
-#include "lib.hpp"
-
-auto main() -> int
+int main()
 {
-  auto const lib = library {};
-  auto const message = "Hello from " + lib.name + "!";
-  std::cout << message << '\n';
+  std::cout << "Guess the sum of two dice!\n";
+  std::cout << "Please input your guess (between 2 and 12).\n";
+
+  std::string guess;
+  std::getline(std::cin, guess);
+
+  std::cout << "You guessed: " << guess << std::endl;
   return 0;
 }
